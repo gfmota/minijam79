@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-const ACCELERATION = 50
+const ACCELERATION = 40
 const GRAVITY = 20
-const JUMP_HEIGHT = -550
-const MAX_SPEED = 500
+const JUMP_HEIGHT = -500
+const MAX_SPEED = 320
 
 var extra_jump : bool
 var air_dash : bool
@@ -11,9 +11,6 @@ var motion : Vector2
 onready var sprite : AnimatedSprite = $AnimatedSprite
 onready var dash_timer : Timer = $DashTimer
 onready var dash_cooldown : Timer = $DashCooldown
-
-func _ready():
-	pass
 
 func _physics_process(delta):
 	motion.y += GRAVITY
@@ -53,7 +50,7 @@ func _physics_process(delta):
 			else:
 				sprite.play("double_jump")
 	else:
-		motion = Vector2((-1 if sprite.flip_h else 1) * MAX_SPEED * 2, 0)
+		motion = Vector2((-1 if sprite.flip_h else 1) * MAX_SPEED * 3, 0)
 		sprite.play("dash")
 	
 	motion = move_and_slide(motion, Vector2(0, -1))
